@@ -25,6 +25,7 @@ class FriendsController < ApplicationController
   def create
     # @friend = Friend.new(friend_params)
     @friend = current_user.friends.build(friend_params)
+    @friend.twitter = @friend.twitter.tr('@', '')
 
     respond_to do |format|
       if @friend.save
