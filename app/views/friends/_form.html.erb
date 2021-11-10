@@ -1,39 +1,42 @@
-<%= form_with(model: friend) do |form| %>
-  <% if friend.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
-      <ul>
-        <% friend.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="card-body">
+  <%= form_with(model: friend) do |form| %>
+    <% if friend.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+        <ul>
+          <% friend.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field mb-3">
+      <%= form.label :first_name, class: 'form-label' %>
+      <%= form.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label :last_name, class: 'form-label' %>
+      <%= form.text_field :last_name, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label :email, class: 'form-label' %>
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label :phone, class: 'form-label' %>
+      <%= form.text_field :phone, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label :twitter, class: 'form-label' %>
+      <%= form.text_field :twitter, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= form.number_field :user_id, id: :friend_user_id, value: current_user.id, type: :hidden, class: 'form-control' %>
+    </div>
+    <div class="actions">
+      <% puts "formm #{form.submit}" %>
+      <%= form.submit class: 'btn btn-primary btn-sm' %>
+      <%= link_to 'Cancel', friends_path, class: 'btn btn-secondary btn-sm' %>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= form.label :twitter %>
-    <%= form.text_field :twitter %>
-  </div>
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :friend_user_id, value: current_user.id, type: :hidden %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
